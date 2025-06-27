@@ -1,0 +1,67 @@
+{
+  "name": "agi-meta-ignorance-backend",
+  "version": "1.0.0",
+  "description": "Backend completo per sistema AGI con Meta-Ignorance e auto-generazione emisferi",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:agi": "node tests/agi-test-suite.js",
+    "migrate": "node src/database/migrate.js",
+    "seed": "node src/database/seed.js"
+  },
+  "keywords": [
+    "agi",
+    "artificial-intelligence",
+    "meta-ignorance",
+    "hemispheres",
+    "auto-generation",
+    "backend",
+    "api"
+  ],
+  "author": "Manus AI",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1",
+    "joi": "^17.11.0",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "rate-limiter-flexible": "^2.4.2",
+    "compression": "^1.7.4",
+    "dotenv": "^16.3.1",
+    "winston": "^3.11.0",
+    "natural": "^6.12.0",
+    "compromise": "^14.10.0",
+    "ml-matrix": "^6.10.7",
+    "mathjs": "^11.11.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "@types/jest": "^29.5.8",
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manus-ai/agi-meta-ignorance-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manus-ai/agi-meta-ignorance-backend/issues"
+  },
+  "homepage": "https://github.com/manus-ai/agi-meta-ignorance-backend#readme"
+}
+

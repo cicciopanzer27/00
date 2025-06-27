@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGI Meta-Ignorance - Trasparenza e Validazione</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .filters {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.9em;
+        }
+
+        .filter-group select, .filter-group input {
+            padding: 8px 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        .filter-group select:focus, .filter-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .query-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .query-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .query-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .query-text {
+            font-size: 1.1em;
+            color: #2c3e50;
+            font-weight: 500;
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .transparency-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .transparency-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .transparency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .transparency-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .transparency-label {
+            font-size: 0.8em;
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .transparency-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .feedback-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .feedback-btn {
+            background: #28a745;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-btn:hover {
+            background: #218838;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 AGI Meta-Ignorance</h1>
+            <p>Sistema di Trasparenza e Validazione</p>
+        </div>
+
+        <div class="content">
+            <!-- Statistiche -->
+            <div class="stats" id="stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalQueries">-</div>
+                    <div class="stat-label">Query Totali</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="peerReviewed">-</div>
+                    <div class="stat-label">Peer Reviewed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="pendingReviews">-</div>
+                    <div class="stat-label">Review Pendenti</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="humanReviewed">-</div>
+                    <div class="stat-label">Review Umane</div>
+                </div>
+            </div>
+
+            <!-- Filtri -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Stato Validazione</label>
+                    <select id="validationFilter">
+                        <option value="">Tutti</option>
+                        <option value="peer_reviewed">Peer Reviewed</option>
+                        <option value="pending_human_review">Review Pendenti</option>
+                        <option value="human_reviewed_approved">Approvate Umanamente</option>
+                        <option value="human_reviewed_rejected">Rifiutate Umanamente</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Tipo Contributo</label>
+                    <select id="contributionFilter">
+                        <option value="">Tutti</option>
+                        <option value="sintesi">Sintesi</option>
+                        <option value="scoperta empirica">Scoperta Empirica</option>
+                        <option value="framework">Framework</option>
+                        <option value="meta-analisi">Meta-analisi</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Origine</label>
+                    <select id="originFilter">
+                        <option value="">Tutti</option>
+                        <option value="AI">AI</option>
+                        <option value="umano">Umano</option>
+                        <option value="misto">Misto</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Ordina per</label>
+                    <select id="sortBy">
+                        <option value="timestamp">Data</option>
+                        <option value="confidence">Confidenza</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="loadQueries()">Applica Filtri</button>
+            </div>
+
+            <!-- Lista Query -->
+            <div id="queriesList">
+                <div class="loading">Caricamento query...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configurazione API
+        const API_BASE = 'http://localhost:3000/api/v1';
+
+        // Carica statistiche
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE}/admin/validation-stats`);
+                const data = await response.json();
+                
+                document.getElementById('totalQueries').textContent = 
+                    data.validation_stats.reduce((sum, stat) => sum + stat.count, 0);
+                
+                const peerReviewed = data.validation_stats.find(s => s.status === 'peer_reviewed');
+                document.getElementById('peerReviewed').textContent = peerReviewed ? peerReviewed.count : 0;
+                
+                document.getElementById('pendingReviews').textContent = data.pending_reviews;
+                
+                const humanReviewed = data.validation_stats.find(s => s.status === 'human_reviewed_approved');
+                document.getElementById('humanReviewed').textContent = humanReviewed ? humanReviewed.count : 0;
+            } catch (error) {
+                console.error('Errore caricamento statistiche:', error);
+            }
+        }
+
+        // Carica query con filtri
+        async function loadQueries() {
+            const queriesList = document.getElementById('queriesList');
+            queriesList.innerHTML = '<div class="loading">Caricamento query...</div>';
+
+            try {
+                const params = new URLSearchParams();
+                const validationStatus = document.getElementById('validationFilter').value;
+                const contributionType = document.getElementById('contributionFilter').value;
+                const origin = document.getElementById('originFilter').value;
+                const sortBy = document.getElementById('sortBy').value;
+
+                if (validationStatus) params.append('validation_status', validationStatus);
+                if (contributionType) params.append('contribution_type', contributionType);
+                if (origin) params.append('origin', origin);
+                params.append('sortBy', sortBy);
+                params.append('order', 'desc');
+                params.append('limit', '20');
+
+                const response = await fetch(`${API_BASE}/queries/filter?${params}`);
+                const data = await response.json();
+
+                if (data.queries.length === 0) {
+                    queriesList.innerHTML = '<div class="loading">Nessuna query trovata con i filtri applicati</div>';
+                    return;
+                }
+
+                queriesList.innerHTML = data.queries.map(query => createQueryCard(query)).join('');
+            } catch (error) {
+                console.error('Errore caricamento query:', error);
+                queriesList.innerHTML = '<div class="error">Errore nel caricamento delle query</div>';
+            }
+        }
+
+        // Crea card per una query
+        function createQueryCard(query) {
+            const meta = query.metadata || {};
+            const badges = getBadges(meta);
+            
+            return `
+                <div class="query-card">
+                    <div class="query-header">
+                        <div class="query-text">${query.query}</div>
+                        <div class="badges">
+                            ${badges.map(badge => `<span class="badge badge-${badge.type}">${badge.text}</span>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="transparency-section">
+                        <div class="transparency-title">
+                            🔍 Trasparenza e Validazione
+                        </div>
+                        <div class="transparency-grid">
+                            <div class="transparency-item">
+                                <div class="transparency-label">Origine</div>
+                                <div class="transparency-value">${meta.origin || 'N/A'}</div>
+                            </div>
+                            <div class="transparency-item">
+                                <div class="transparency-label">Metodologia</div>
+                                <div class="transparency-value">${meta.methodology || 'N/A'}</div>
+                            </div>
+                            <div class="transparency-item">
+                                <div class="transparency-label">Stato Validazione</div>
+                                <div class="transparency-value">${getValidationStatusText(meta.validation_status)}</div>
+                            </div>
+                            <div class="transparency-item">
+                                <div class="transparency-label">Tipo Contributo</div>
+                                <div class="transparency-value">${meta.contribution_type || 'N/A'}</div>
+                            </div>
+                            <div class="transparency-item">
+                                <div class="transparency-label">Confidenza</div>
+                                <div class="transparency-value">${(query.confidence * 100).toFixed(1)}%</div>
+                            </div>
+                            <div class="transparency-item">
+                                <div class="transparency-label">Reviewer</div>
+                                <div class="transparency-value">${(meta.reviewers || []).join(', ') || 'N/A'}</div>
+                            </div>
+                        </div>
+                        
+                        ${meta.limitations && meta.limitations.length > 0 ? `
+                            <div style="margin-top: 15px;">
+                                <div class="transparency-label">Limitazioni</div>
+                                <ul style="margin-top: 5px; padding-left: 20px; color: #6c757d;">
+                                    ${meta.limitations.map(lim => `<li>${lim}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="feedback-section">
+                        <button class="feedback-btn" onclick="requestFeedback('${query.id}')">
+                            Segnala Problema / Richiedi Validazione
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Genera badge per la query
+        function getBadges(meta) {
+            const badges = [];
+            
+            // Badge stato validazione
+            if (meta.validation_status === 'peer_reviewed') {
+                badges.push({ type: 'success', text: 'Peer Reviewed' });
+            } else if (meta.validation_status === 'pending_human_review') {
+                badges.push({ type: 'warning', text: 'Review Pendente' });
+            } else if (meta.validation_status === 'human_reviewed_approved') {
+                badges.push({ type: 'success', text: 'Approvata Umanamente' });
+            } else if (meta.validation_status === 'human_reviewed_rejected') {
+                badges.push({ type: 'danger', text: 'Rifiutata' });
+            }
+            
+            // Badge tipo contributo
+            if (meta.contribution_type) {
+                badges.push({ type: 'info', text: meta.contribution_type });
+            }
+            
+            // Badge origine
+            if (meta.origin) {
+                badges.push({ type: 'info', text: meta.origin });
+            }
+            
+            return badges;
+        }
+
+        // Testo stato validazione
+        function getValidationStatusText(status) {
+            const statusMap = {
+                'peer_reviewed': '🟢 Peer Reviewed (AI)',
+                'pending_human_review': '🟡 Review Pendente',
+                'human_reviewed_approved': '🟢 Approvata Umanamente',
+                'human_reviewed_rejected': '🔴 Rifiutata',
+                'experimental': '🔴 Sperimentale'
+            };
+            return statusMap[status] || status || 'N/A';
+        }
+
+        // Richiedi feedback
+        function requestFeedback(queryId) {
+            const description = prompt('Descrivi il problema o la richiesta di validazione:');
+            if (!description) return;
+            
+            const type = confirm('Richiedi validazione umana?') ? 'validation_request' : 'issue';
+            
+            fetch(`${API_BASE}/queries/${queryId}/feedback`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    type: type,
+                    description: description,
+                    severity: 'medium',
+                    reviewer_requested: type === 'validation_request'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Feedback registrato con successo!');
+                    loadQueries(); // Ricarica per mostrare eventuali aggiornamenti
+                } else {
+                    alert('Errore nel salvataggio del feedback');
+                }
+            })
+            .catch(error => {
+                console.error('Errore feedback:', error);
+                alert('Errore nella richiesta');
+            });
+        }
+
+        // Inizializzazione
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStats();
+            loadQueries();
+        });
+    </script>
+</body>
+</html> 
