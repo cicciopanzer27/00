@@ -1,0 +1,51 @@
+// Probabilistic Programming in MIAL
+// This example shows probabilistic reasoning and uncertainty handling
+
+// Define probabilistic variables
+let sensor_reading: prob(0.7) = 98.6 ± 0.5;
+let measurement_error: prob(0.6) = 0.3;
+let calibration_offset: confident(0.9) = 0.1;
+
+console.log("Probabilistic Programming Example");
+console.log("=================================");
+
+// Validate sensor reading
+if (validate(sensor_reading)) {
+    console.log("Sensor reading is valid");
+    console.log("Reading:", sensor_reading);
+    console.log("Confidence:", confidence(sensor_reading));
+    console.log("Uncertainty:", uncertainty(sensor_reading));
+} else {
+    console.log("Sensor reading validation failed");
+}
+
+// Combine measurements with uncertainty propagation
+let corrected_reading = sensor_reading - calibration_offset;
+console.log("Corrected reading:", corrected_reading);
+console.log("Corrected confidence:", confidence(corrected_reading));
+
+// Meta-reasoning about measurement quality
+meta confidence(sensor_reading) > 0.5 ? {
+    if (confidence(sensor_reading) > 0.8) {
+        conclude("High confidence measurement - proceed with analysis");
+    } else {
+        conclude("Medium confidence measurement - consider additional validation");
+        seek_more_data("backup_sensors");
+    }
+}
+
+// Learning function for sensor calibration
+learn calibrate_sensor(new_calibration_data) {
+    if (validate(new_calibration_data)) {
+        integrate(new_calibration_data);
+        self.confidence += 0.05;
+        return conclude("Sensor calibration updated");
+    }
+    return conclude("Calibration data rejected");
+}
+
+// Simulate calibration
+calibrate_sensor("calibration_data_v1.2");
+
+console.log("Final sensor state:");
+console.log("Self confidence:", self.confidence);

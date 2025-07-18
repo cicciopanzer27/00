@@ -1,0 +1,95 @@
+// Meta-Reasoning in MIAL
+// This example demonstrates meta-cognitive capabilities
+
+// Define knowledge domains
+let physics_knowledge: confident(0.85) = "general_relativity";
+let math_knowledge: confident(0.92) = "calculus";
+let ai_knowledge: prob(0.78) = "machine_learning";
+
+console.log("Meta-Reasoning Example");
+console.log("======================");
+
+// Meta-reasoning about what we know
+meta know(physics_knowledge) ? {
+    console.log("Physics knowledge detected");
+    console.log("Domain:", physics_knowledge);
+    console.log("Confidence:", confidence(physics_knowledge));
+    
+    if (confidence(physics_knowledge) > 0.8) {
+        conclude("Strong physics knowledge - can reason about spacetime");
+    } else {
+        conclude("Weak physics knowledge - need more study");
+        seek_more_data("physics_textbooks");
+    }
+}
+
+// Meta-reasoning about AI capabilities
+meta know(ai_knowledge) ? {
+    console.log("AI knowledge assessment:");
+    
+    let reasoning_result = reason_about(ai_knowledge);
+    console.log("Reasoning result:", reasoning_result);
+    
+    if (reasoning_result.confidence > 0.7) {
+        conclude("Sufficient AI knowledge for meta-reasoning");
+    } else {
+        conclude("Limited AI knowledge - expanding knowledge base");
+        seek("advanced_ai_concepts");
+    }
+}
+
+// Self-reflection function
+function self_reflect() {
+    console.log("Performing self-reflection...");
+    
+    let reflection = self.reflect();
+    console.log("Self-reflection results:", reflection);
+    
+    // Update self-confidence based on reflection
+    if (reflection.confidence > 0.8) {
+        self.updateConfidence(0.02);
+    } else {
+        self.updateConfidence(-0.01);
+    }
+    
+    return reflection;
+}
+
+// Perform self-reflection
+let reflection_result = self_reflect();
+
+// Meta-learning function
+learn expand_knowledge(domain, new_info) {
+    console.log("Expanding knowledge in domain:", domain);
+    
+    // Validate new information
+    if (validate(new_info)) {
+        console.log("New information validated");
+        
+        // Integrate knowledge
+        integrate(new_info);
+        
+        // Update domain-specific confidence
+        if (domain === "physics") {
+            physics_knowledge = confident(0.9);
+        } else if (domain === "ai") {
+            ai_knowledge = prob(0.85);
+        }
+        
+        // Update self-confidence
+        self.updateConfidence(0.03);
+        
+        return conclude("Knowledge successfully expanded");
+    } else {
+        return conclude("Knowledge integration failed - information rejected");
+    }
+}
+
+// Simulate learning
+expand_knowledge("physics", "quantum_field_theory");
+expand_knowledge("ai", "neural_networks");
+
+console.log("Final meta-cognitive state:");
+console.log("Physics knowledge:", physics_knowledge);
+console.log("AI knowledge:", ai_knowledge);
+console.log("Self confidence:", self.confidence);

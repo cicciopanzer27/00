@@ -1,0 +1,130 @@
+// Nuclear Fusion Research in MIAL
+// This example demonstrates domain-specific AI reasoning for fusion physics
+
+console.log("Nuclear Fusion Research Example");
+console.log("===============================");
+
+// Define fusion-specific variables with uncertainty
+let plasma_temperature: prob(0.85) = 100000000 ± 5000000; // 100 million K ± 5M K
+let plasma_density: confident(0.9) = 1.0e20; // particles/m³
+let confinement_time: prob(0.75) = 2.5 ± 0.3; // seconds
+
+// Fusion reaction parameters
+let deuterium_concentration: prob(0.8) = 0.5;
+let tritium_concentration: prob(0.8) = 0.5;
+let fusion_cross_section: confident(0.95) = 5.0e-28; // m²
+
+console.log("Plasma parameters:");
+console.log("Temperature:", plasma_temperature);
+console.log("Density:", plasma_density);
+console.log("Confinement time:", confinement_time);
+
+// Define fusion physics symbols
+symbol nTtau = plasma_density * plasma_temperature * confinement_time;
+symbol Q_factor = P_fusion / P_heating;
+symbol Lawson_criterion = nTtau > 3.0e21;
+symbol triple_product = plasma_density * plasma_temperature * confinement_time;
+
+console.log("Fusion symbols defined");
+
+// Calculate triple product
+let calculated_triple_product = plasma_density * plasma_temperature * confinement_time;
+console.log("Calculated triple product:", calculated_triple_product);
+console.log("Triple product confidence:", confidence(calculated_triple_product));
+
+// Meta-reasoning about fusion conditions
+meta calculated_triple_product > 3.0e21 ? {
+    console.log("Triple product exceeds Lawson criterion");
+    conclude("Fusion conditions potentially achievable");
+    
+    // Further analysis
+    if (confidence(calculated_triple_product) > 0.8) {
+        conclude("High confidence in fusion viability");
+    } else {
+        conclude("Moderate confidence - need more precise measurements");
+        seek_more_data("plasma_diagnostics");
+    }
+} else {
+    console.log("Triple product below Lawson criterion");
+    conclude("Fusion conditions not yet achieved");
+    seek("improved_confinement_methods");
+}
+
+// Learning function for fusion optimization
+learn optimize_fusion_parameters(new_data) {
+    console.log("Optimizing fusion parameters with new data");
+    
+    if (validate(new_data)) {
+        // Integrate new experimental data
+        integrate(new_data);
+        
+        // Update parameter confidence
+        plasma_temperature = prob(0.9);
+        plasma_density = confident(0.95);
+        confinement_time = prob(0.8);
+        
+        // Recalculate triple product
+        let new_triple_product = plasma_density * plasma_temperature * confinement_time;
+        console.log("Updated triple product:", new_triple_product);
+        
+        // Update self-confidence based on results
+        if (new_triple_product > 3.0e21) {
+            self.updateConfidence(0.05);
+        } else {
+            self.updateConfidence(0.02);
+        }
+        
+        return conclude("Fusion parameters optimized");
+    } else {
+        return conclude("Parameter optimization failed - invalid data");
+    }
+}
+
+// Simulate parameter optimization
+optimize_fusion_parameters("ITER_experiment_data_2024");
+
+// Knowledge graph for fusion concepts
+knowledge_graph fusion_physics {
+    plasma_temperature -> affects -> fusion_rate;
+    plasma_density -> affects -> collision_frequency;
+    confinement_time -> affects -> energy_loss;
+    triple_product -> determines -> fusion_viability;
+    Q_factor -> measures -> energy_gain;
+    Lawson_criterion -> threshold_for -> ignition;
+}
+
+console.log("Fusion physics knowledge graph created");
+
+// Advanced fusion analysis function
+function analyze_fusion_scenario(scenario_name) {
+    console.log("Analyzing fusion scenario:", scenario_name);
+    
+    // Reason about the scenario
+    let analysis = reason_about(scenario_name);
+    console.log("Analysis:", analysis);
+    
+    // Meta-reasoning about scenario viability
+    meta analysis.confidence > 0.7 ? {
+        console.log("Scenario analysis has high confidence");
+        conclude("Scenario is technically viable");
+    } else {
+        console.log("Scenario analysis has low confidence");
+        conclude("Scenario requires further study");
+        seek("additional_experimental_data");
+    }
+    
+    return analysis;
+}
+
+// Analyze different fusion scenarios
+analyze_fusion_scenario("ITER_deuterium_tritium");
+analyze_fusion_scenario("tokamak_steady_state");
+analyze_fusion_scenario("stellarator_optimization");
+
+// Final assessment
+console.log("Final fusion research assessment:");
+console.log("System confidence:", self.confidence);
+console.log("Plasma parameters confidence:", confidence(plasma_temperature));
+console.log("Fusion physics understanding: Advanced");
+
+conclude("Nuclear fusion research simulation completed");

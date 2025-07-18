@@ -1,0 +1,29 @@
+// Basic MIAL Program - Introduction to AI-native programming
+// This example demonstrates basic MIAL syntax and concepts
+
+// Regular variable declaration
+let x = 42;
+let message = "Hello, MIAL!";
+
+// Probabilistic variable with confidence level
+let temperature: prob(0.8) = 23.5 ± 2.1;
+let weather: confident(0.9) = "sunny";
+
+// Display basic values
+console.log("Basic MIAL Example");
+console.log("==================");
+console.log("Regular value x:", x);
+console.log("Temperature:", temperature);
+console.log("Weather:", weather);
+
+// Check confidence levels
+console.log("Temperature confidence:", confidence(temperature));
+console.log("Weather confidence:", confidence(weather));
+
+// Basic arithmetic with uncertainty propagation
+let adjusted_temp = temperature + 5.0;
+console.log("Adjusted temperature:", adjusted_temp);
+console.log("Adjusted confidence:", confidence(adjusted_temp));
+
+// Conclude with results
+conclude("Basic MIAL demonstration completed successfully");
