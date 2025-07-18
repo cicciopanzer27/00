@@ -1,12 +1,5 @@
 {
-  "metadata": {
-    "created": "2025-07-18T08:35:00.000Z",
-    "last_updated": "2025-07-18T08:36:19.085523",
-    "version": "2.0",
-    "total_symbols": 11,
-    "total_questions": 8
-  },
-  "focus_symbols": [
+  "symbols": [
     {
       "id": "SYM_FUSION_1737188100_1",
       "name": "Q_plasma",
@@ -138,7 +131,7 @@
       ]
     }
   ],
-  "open_questions": [
+  "questions": [
     {
       "id": "Q_FUSION_1737188100_1",
       "text": "Quali sono i limiti teorici del Q_plasma nella fusione nucleare?",
@@ -196,24 +189,7 @@
       "status": "open"
     }
   ],
-  "operational_recommendations": [
-    {
-      "type": "symbol_connection",
-      "description": "Esplora connessioni tra 7 nuovi simboli",
-      "priority": "high"
-    },
-    {
-      "type": "question_resolution",
-      "description": "Risolvi 4 domande aperte",
-      "priority": "medium"
-    },
-    {
-      "type": "source_validation",
-      "description": "Valida fonti web estratte",
-      "priority": "low"
-    }
-  ],
-  "symbolic_connections": [
+  "connections": [
     {
       "from": "Q_plasma",
       "to": "Lawson_criterion",
@@ -227,103 +203,9 @@
       "strength": 0.85
     }
   ],
-  "web_sources": [
-    {
-      "url": "https://en.wikipedia.org/wiki/Nuclear_fusion",
-      "title": "Nuclear Fusion - Wikipedia",
-      "extracted_concepts": [
-        "Lawson criterion",
-        "Q_plasma",
-        "triple product",
-        "tokamak",
-        "stellarator"
-      ],
-      "relevance_score": 0.95
-    },
-    {
-      "url": "https://www.iter.org/",
-      "title": "ITER Project - International Fusion Research",
-      "extracted_concepts": [
-        "ITER",
-        "magnetic confinement",
-        "fusion power",
-        "plasma physics"
-      ],
-      "relevance_score": 0.93
-    },
-    {
-      "url": "https://en.wikipedia.org/wiki/Quantum_entanglement",
-      "title": "Quantum Entanglement - Wikipedia",
-      "extracted_concepts": [
-        "quantum entanglement",
-        "EPR paradox",
-        "Bell's theorem"
-      ],
-      "relevance_score": 0.9
-    },
-    {
-      "url": "https://www.nature.com/subjects/nuclear-fusion",
-      "title": "Nature - Nuclear Fusion",
-      "extracted_concepts": [
-        "fusion breakthroughs",
-        "materials for fusion",
-        "energy gain"
-      ],
-      "relevance_score": 0.91
-    },
-    {
-      "url": "https://en.wikipedia.org/wiki/Nuclear_fusion",
-      "title": "Nuclear Fusion - Wikipedia",
-      "extracted_concepts": [
-        "Lawson criterion",
-        "Q_plasma",
-        "triple product",
-        "tokamak",
-        "stellarator"
-      ],
-      "relevance_score": 0.95
-    },
-    {
-      "url": "https://www.iter.org/",
-      "title": "ITER Project - International Fusion Research",
-      "extracted_concepts": [
-        "ITER",
-        "magnetic confinement",
-        "fusion power",
-        "plasma physics"
-      ],
-      "relevance_score": 0.93
-    }
-  ],
-  "peer_reviews": [
-    {
-      "reviewer": "AutoReviewer",
-      "timestamp": "2025-07-18T08:35:00.000Z",
-      "assessment": "Symbolic generation appears consistent with nuclear fusion and quantum physics principles",
-      "confidence": 0.8,
-      "suggestions": [
-        "Consider cross-domain connections between fusion and quantum mechanics",
-        "Validate mathematical notation for complex domains"
-      ]
-    },
-    {
-      "reviewer": "AutoReviewer",
-      "timestamp": "2025-07-18T08:36:19.085517",
-      "assessment": "Symbolic generation appears consistent",
-      "confidence": 0.8,
-      "suggestions": [
-        "Consider cross-domain connections",
-        "Validate mathematical notation"
-      ]
-    }
-  ],
-  "generation_history": [
-    {
-      "timestamp": "2025-07-18T08:35:00.000Z",
-      "symbols_generated": 4,
-      "questions_generated": 4,
-      "sources_scraped": 3,
-      "peer_reviews": 1
-    }
-  ]
+  "metadata": {
+    "exported_at": "2025-07-18T08:36:19.086109",
+    "total_symbols": 11,
+    "total_questions": 8
+  }
 }
