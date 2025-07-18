@@ -1,0 +1,150 @@
+{
+  "metadata": {
+    "created": "2025-07-18T08:35:00.000Z",
+    "last_updated": "2025-07-18T08:35:00.000Z",
+    "version": "2.0",
+    "total_symbols": 4,
+    "total_questions": 4
+  },
+  "focus_symbols": [
+    {
+      "id": "SYM_FUSION_1737188100_1",
+      "name": "Q_plasma",
+      "domain": "nuclear_fusion",
+      "description": "Rapporto tra energia prodotta e immessa in un plasma di fusione",
+      "mathematical_notation": "Q_{plasma} = \\frac{P_{fusione}}{P_{immessa}}",
+      "generated_at": "2025-07-18T08:35:00.000Z",
+      "confidence": 0.92,
+      "connections": ["Lawson_criterion", "triple_product"]
+    },
+    {
+      "id": "SYM_FUSION_1737188100_2",
+      "name": "Lawson_criterion",
+      "domain": "nuclear_fusion",
+      "description": "Criterio di Lawson per l'innesco della fusione nucleare",
+      "mathematical_notation": "nT\\tau_E > C",
+      "generated_at": "2025-07-18T08:35:00.000Z",
+      "confidence": 0.95,
+      "connections": ["Q_plasma", "triple_product"]
+    },
+    {
+      "id": "SYM_QUANTUM_1737188100_1",
+      "name": "Quantum_entanglement",
+      "domain": "quantum_mechanics",
+      "description": "Entanglement quantistico tra particelle",
+      "mathematical_notation": "|\\psi\\rangle = \\frac{1}{\\sqrt{2}}(|00\\rangle + |11\\rangle)",
+      "generated_at": "2025-07-18T08:35:00.000Z",
+      "confidence": 0.88,
+      "connections": ["quantum_superposition"]
+    },
+    {
+      "id": "SYM_RELATIVITY_1737188100_1",
+      "name": "Spacetime_curvature",
+      "domain": "relativity",
+      "description": "Curvatura dello spazio-tempo nella relatività generale",
+      "mathematical_notation": "R_{\\mu\\nu} - \\frac{1}{2}g_{\\mu\\nu}R = \\frac{8\\pi G}{c^4}T_{\\mu\\nu}",
+      "generated_at": "2025-07-18T08:35:00.000Z",
+      "confidence": 0.94,
+      "connections": ["Einstein_field_equations"]
+    }
+  ],
+  "open_questions": [
+    {
+      "id": "Q_FUSION_1737188100_1",
+      "text": "Quali sono i limiti teorici del Q_plasma nella fusione nucleare?",
+      "priority": 5,
+      "generated_at": "2025-07-18T08:35:00.000Z",
+      "status": "open"
+    },
+    {
+      "id": "Q_FUSION_1737188100_2", 
+      "text": "Come si può ottimizzare il triple_product in un tokamak?",
+      "priority": 4,
+      "generated_at": "2025-07-18T08:35:00.000Z",
+      "status": "open"
+    },
+    {
+      "id": "Q_QUANTUM_1737188100_1",
+      "text": "Come si può mantenere l'entanglement quantistico su lunghe distanze?",
+      "priority": 3,
+      "generated_at": "2025-07-18T08:35:00.000Z",
+      "status": "open"
+    },
+    {
+      "id": "Q_RELATIVITY_1737188100_1",
+      "text": "Quali sono le implicazioni della curvatura spazio-temporale per i viaggi interstellari?",
+      "priority": 3,
+      "generated_at": "2025-07-18T08:35:00.000Z",
+      "status": "open"
+    }
+  ],
+  "operational_recommendations": [
+    {
+      "type": "symbol_connection",
+      "description": "Esplora connessioni tra 4 nuovi simboli",
+      "priority": "high"
+    },
+    {
+      "type": "question_resolution",
+      "description": "Risolvi 4 domande aperte",
+      "priority": "medium"
+    },
+    {
+      "type": "source_validation",
+      "description": "Valida fonti web estratte",
+      "priority": "low"
+    }
+  ],
+  "symbolic_connections": [
+    {
+      "from": "Q_plasma",
+      "to": "Lawson_criterion",
+      "type": "dependency",
+      "strength": 0.9
+    },
+    {
+      "from": "Lawson_criterion",
+      "to": "triple_product",
+      "type": "parameter",
+      "strength": 0.85
+    }
+  ],
+  "web_sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nuclear_fusion",
+      "title": "Nuclear Fusion - Wikipedia",
+      "extracted_concepts": ["Lawson criterion", "Q_plasma", "triple product", "tokamak", "stellarator"],
+      "relevance_score": 0.95
+    },
+    {
+      "url": "https://www.iter.org/",
+      "title": "ITER Project - International Fusion Research",
+      "extracted_concepts": ["ITER", "magnetic confinement", "fusion power", "plasma physics"],
+      "relevance_score": 0.93
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Quantum_entanglement",
+      "title": "Quantum Entanglement - Wikipedia",
+      "extracted_concepts": ["quantum entanglement", "EPR paradox", "Bell's theorem"],
+      "relevance_score": 0.90
+    }
+  ],
+  "peer_reviews": [
+    {
+      "reviewer": "AutoReviewer",
+      "timestamp": "2025-07-18T08:35:00.000Z",
+      "assessment": "Symbolic generation appears consistent with nuclear fusion and quantum physics principles",
+      "confidence": 0.8,
+      "suggestions": ["Consider cross-domain connections between fusion and quantum mechanics", "Validate mathematical notation for complex domains"]
+    }
+  ],
+  "generation_history": [
+    {
+      "timestamp": "2025-07-18T08:35:00.000Z",
+      "symbols_generated": 4,
+      "questions_generated": 4,
+      "sources_scraped": 3,
+      "peer_reviews": 1
+    }
+  ]
+}
