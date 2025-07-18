@@ -132,7 +132,7 @@ class MialGrammar {
       init = this.parseExpression();
     }
     
-    this.consume('DELIMITER', ';', 'Expected `;` after variable declaration');
+    this.consume('DELIMITER', 'Expected `;` after variable declaration', ';');
     
     return {
       type: 'VariableDeclaration',
