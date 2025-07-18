@@ -625,7 +625,7 @@ class MialGrammar {
       return this.advance();
     }
     
-    throw new Error(`${message}. Got ${this.currentToken.type}: ${this.currentToken.value}`);
+    throw new Error(`${message}. Got ${this.currentToken.type}: ${this.currentToken.value} at line ${this.currentToken.line || 'unknown'}`);
   }
 
   skipToNextStatement() {
